@@ -70,7 +70,7 @@ class BatchRemoteDatasource implements IBatchDataSource {
     try {
       final response = await _apiService.dio.get(ApiEndpoints.getAllBatch);
       if (response.statusCode == 200) {
-        GetAllBatchDto getAllBatchDTO = GetAllBatchDto.fromJson(response.data);
+        GetAllBatchDTO getAllBatchDTO = GetAllBatchDTO.fromJson(response.data);
         return BatchApiModel.toEntityList(getAllBatchDTO.data);
       } else {
         // Handle unexpected status codes

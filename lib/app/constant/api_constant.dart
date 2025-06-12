@@ -33,4 +33,14 @@ class ApiEndpoints {
   static const String createCourse = "course/createCourse";
   static const String deleteCourse = "course/";
   static const String getAllCourse = "course/getAllCourse";
+
+  // static String get registerStudent => null;
+
+  // static String loginStudent;
+
+  // static String uploadProfilePicture;
+
+  // static String getCurrentUser;
+
+  
 }

@@ -3,7 +3,9 @@ import 'package:get_it/get_it.dart';
 import 'package:student_management/core/network/api_service.dart';
 import 'package:student_management/core/network/hive_service.dart';
 import 'package:student_management/features/auth/data/data_source/local_datasource/student_local_datasource.dart';
+import 'package:student_management/features/auth/data/data_source/remote_datasource/student_remote_datasource.dart';
 import 'package:student_management/features/auth/data/repository/local_repository/student_local_repository.dart';
+import 'package:student_management/features/auth/data/repository/remote_repository/student_remote_repository.dart';
 import 'package:student_management/features/auth/domain/use_case/student_get_current_usecase.dart';
 import 'package:student_management/features/auth/domain/use_case/student_image_upload_usecase.dart';
 import 'package:student_management/features/auth/domain/use_case/student_login_usecase.dart';
@@ -45,33 +47,21 @@ Future<void> _initHiveService() async {
   serviceLocator.registerLazySingleton(() => HiveService());
 }
 
-Future<void> initApiModule() async {
+Future<void> initApiModule() async{
   //Dio instance
   serviceLocator.registerLazySingleton<Dio>(() => Dio());
   serviceLocator.registerLazySingleton(() => ApiService(serviceLocator<Dio>()));
 }
 
 Future<void> _initCourseModule() async {
-  serviceLocator.registerFactory<CourseLocalDataSource>(
+  serviceLocator.registerFactory(
     () => CourseLocalDataSource(hiveService: serviceLocator<HiveService>()),
   );
-
-   serviceLocator.registerFactory(
+  serviceLocator.registerFactory(
     () => CourseRemoteDatasource(apiService: serviceLocator<ApiService>()),
   );
-  
-
-  
-
 
   serviceLocator.registerFactory(
-    () => CourseLocalRepository(
-      courseLocalDataSource: serviceLocator<CourseLocalDataSource>(),
-    ),
-  );
-
-
-   serviceLocator.registerFactory(
     () => CourseRemoteRepository(
       courseRemoteDatasource: serviceLocator<CourseRemoteDatasource>(),
     ),
@@ -79,19 +69,19 @@ Future<void> _initCourseModule() async {
 
   serviceLocator.registerFactory(
     () => GetAllCourseUsecase(
-      courseRepository: serviceLocator<CourseLocalRepository>(),
+      courseRepository: serviceLocator<CourseRemoteRepository>(),
     ),
   );
 
   serviceLocator.registerFactory(
     () => CreateCourseUsecase(
-      courseRepository: serviceLocator<CourseLocalRepository>(),
+      courseRepository: serviceLocator<CourseRemoteRepository>(),
     ),
   );
 
   serviceLocator.registerFactory(
     () => DeleteCourseUsecase(
-      courseRepository: serviceLocator<CourseLocalRepository>(),
+      courseRepository: serviceLocator<CourseRemoteRepository>(),
     ),
   );
 
@@ -152,12 +142,24 @@ Future<void> _initAuthModule() async {
   serviceLocator.registerFactory(
     () => StudentLocalDatasource(hiveService: serviceLocator<HiveService>()),
   );
-
+  
+   serviceLocator.registerFactory(
+    () => StudentRemoteDatasource(apiService: serviceLocator<ApiService>()),
+  );
   serviceLocator.registerFactory(
     () => StudentLocalRepository(
       studentLocalDatasource: serviceLocator<StudentLocalDatasource>(),
     ),
   );
+
+
+   serviceLocator.registerFactory<StudentRemoteRepository>(
+    () => StudentRemoteRepository(
+      studentRemoteDatasource: serviceLocator<StudentRemoteDatasource>(),
+    ),
+  );
+
+   
 
   serviceLocator.registerFactory(
     () => StudentLoginUsecase(

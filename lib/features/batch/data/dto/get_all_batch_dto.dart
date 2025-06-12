@@ -4,19 +4,19 @@ import 'package:student_management/features/batch/data/model/batch_api_model.dar
 part 'get_all_batch_dto.g.dart';
 
 @JsonSerializable()
-class GetAllBatchDto {
+class GetAllBatchDTO {
   final bool success;
   final int count;
   final List<BatchApiModel> data;
 
-  const GetAllBatchDto({
+  const GetAllBatchDTO({
     required this.success,
     required this.count,
     required this.data,
   });
 
-  Map<String, dynamic> toJson() => _$GetAllBatchDtoToJson(this);
+  Map<String, dynamic> toJson() => _$GetAllBatchDTOToJson(this);
 
-  factory GetAllBatchDto.fromJson(Map<String, dynamic> json) =>
-      _$GetAllBatchDtoFromJson(json);
+  factory GetAllBatchDTO.fromJson(Map<String, dynamic> json) =>
+      _$GetAllBatchDTOFromJson(json);
 }
