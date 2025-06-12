@@ -90,4 +90,6 @@ class RegisterViewModel extends Bloc<RegisterEvent, RegisterState> {
       },
     );
   }
+
+  void registerUser() {}
 }

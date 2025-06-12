@@ -30,4 +30,6 @@ class RegisterState extends Equatable {
 
   @override
   List<Object?> get props => [isLoading, isSuccess, imageName];
+
+  get errorMessage => null;
 }
