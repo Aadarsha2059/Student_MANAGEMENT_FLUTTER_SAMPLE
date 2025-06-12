@@ -1,6 +1,3 @@
-
-
-// ======= DIO Interceptor 
 import 'package:dio/dio.dart';
 
 class DioErrorInterceptor extends Interceptor {
@@ -32,4 +29,3 @@ class DioErrorInterceptor extends Interceptor {
     super.onError(customError, handler);
   }
 }
-

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:student_management/app/constant/api_endpoints.dart';
+import 'package:student_management/app/constant/api_constant.dart';
 import 'package:student_management/core/network/api_service.dart';
 import 'package:student_management/features/course/data/data_source/course_data_source.dart';
 import 'package:student_management/features/course/data/dto/get_all_course_dto.dart';

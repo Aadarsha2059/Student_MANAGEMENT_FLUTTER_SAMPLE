@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:student_management/app/constant/api_endpoints.dart';
+import 'package:student_management/app/constant/api_constant.dart';
 import 'package:student_management/core/network/api_service.dart';
 import 'package:student_management/features/batch/data/data_source/batch_datasource.dart';
 import 'package:student_management/features/batch/data/dto/get_all_batch_dto.dart';

@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:student_management/app/constant/api_endpoints.dart';
+import 'package:student_management/app/constant/api_constant.dart';
 import 'package:student_management/core/network/dio_error_interceptor.dart';
+
 
 class ApiService {
   final Dio _dio;
